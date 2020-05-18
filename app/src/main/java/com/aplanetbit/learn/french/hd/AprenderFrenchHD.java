@@ -23,8 +23,6 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.apptracker.android.track.AppTracker;
-import com.flurry.android.FlurryAgent;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.AudienceNetworkAds;
@@ -78,7 +76,6 @@ public class AprenderFrenchHD extends Activity implements OnInitListener {
                 startActivity(new Intent(ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getString(R.string.paquete)) ) );
                 return true;
             case R.id.Salir:
-                FlurryAgent.onEndSession(this);
                 this.finish();
                 return true;
             case R.id.Acerca:
@@ -95,34 +92,6 @@ public class AprenderFrenchHD extends Activity implements OnInitListener {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-/* Para Ogury
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        Presage.getInstance().adToServe("interstitial", new IADHandler() {
-
-            @Override
-            public void onAdNotFound() {
-            // Para LeadBolt
-                AppTracker.loadModule(getApplicationContext(), "inapp");
-
-            }
-
-            @Override
-            public void onAdFound() {
-                Log.i("PRESAGE", "ad found");
-            }
-
-            @Override
-            public void onAdClosed() {
-                Log.i("PRESAGE", "ad closed");
-            }
-        });
-    }
-
- */
 
     private AdView adView;
 //Definicion de la interfaz de usuario
@@ -146,25 +115,6 @@ public class AprenderFrenchHD extends Activity implements OnInitListener {
         // Request an ad
         adView.loadAd();
 
-        //   Presage.getInstance().setContext(this.getBaseContext());
-     //   Presage.getInstance().start();
-
-
-        if(savedInstanceState == null) {
-            // Initialize Leadbolt SDK with your api key
-            AppTracker.startSession(getApplicationContext(), getString(R.string.LeadboltStr));
-        }
-        // cache Leadbolt Ad without showing it
-        AppTracker.loadModuleToCache(getApplicationContext(), "inapp");
-
-        // call this when you want to display the Leadbolt Interstitial
-        //AppTracker.loadModule(getApplicationContext(), "inapp");
-
-/*
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-*/
         Button holaPlayerBtn = (Button)findViewById(R.id.holaPlayerBtn);
         Button buenosdiasPlayerBtn = (Button)findViewById(R.id.buenosdiasPlayerBtn);
         Button adiosPlayerBtn = (Button)findViewById(R.id.adiosPlayerBtn);
@@ -241,10 +191,6 @@ public class AprenderFrenchHD extends Activity implements OnInitListener {
         Intent checkIntent = new Intent();
         checkIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(checkIntent, MY_DATA_CHECK_CODE);
-
-//Id de Flurry	
-        FlurryAgent.onStartSession(this, getString(R.string.flurry));
-
 
 //Lo que hace el bot�n "Hola"
         holaPlayerBtn.setOnClickListener(new OnClickListener(){

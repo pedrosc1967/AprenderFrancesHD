@@ -161,7 +161,6 @@
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-8829538089345362/6894359313</string>
 	<string name="LeadboltStr" translatable="false">dA2xdgz29TkzKRRMSAszwp4tiQtA7878</string>
 	<string name="OguryStr" translatable="false">266683</string>
-	<string name="flurry" translatable="false">RQQTQ76DHVJVXRYWXYRZ</string>
 	<string name="paquete" translatable="false">com.aplanetbit.learn.french.hd</string>
 	<string name="action_share" translatable="false">Share</string>
 </resources>
